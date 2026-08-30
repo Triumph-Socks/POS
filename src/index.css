@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-ink-950: #0b0f0d;
+  --color-ink-925: #0e1310;
+  --color-ink-900: #111713;
+  --color-ink-850: #151c17;
+  --color-ink-800: #1a221d;
+  --color-ink-750: #202a24;
+  --color-ink-700: #27332c;
+  --color-ink-600: #33413a;
+  --color-ink-500: #4c5c53;
+  --color-ink-400: #6b7d72;
+  --color-ink-300: #8b9c90;
+  --color-ink-200: #b6c3ba;
+  --color-ink-100: #e2eae4;
+  --color-ink-50: #f2f7f3;
+
+  --color-leaf-300: #8ce7ac;
+  --color-leaf-400: #5bd98a;
+  --color-leaf-500: #35c56c;
+  --color-leaf-600: #23a457;
+  --color-leaf-700: #1b7f45;
+  --color-leaf-950: #0d2417;
+
+  --color-gold-300: #f9d98a;
+  --color-gold-400: #f6c766;
+  --color-gold-500: #f2b33d;
+  --color-gold-600: #d89a26;
+  --color-gold-950: #2a2109;
+
+  --color-flare-300: #f9a89f;
+  --color-flare-400: #f58a80;
+  --color-flare-500: #f0655a;
+  --color-flare-600: #d44b41;
+  --color-flare-950: #2a1210;
+
+  --color-ice-300: #a5e3ef;
+  --color-ice-400: #7cd4e6;
+  --color-ice-500: #53c6de;
+  --color-ice-600: #35a8c0;
+  --color-ice-950: #0d2329;
+
+  --color-cobalt-300: #a8c6f8;
+  --color-cobalt-400: #86aef7;
+  --color-cobalt-500: #6a9ef5;
+  --color-cobalt-600: #4c80dd;
+  --color-cobalt-950: #101d33;
+
+  --color-tang-300: #f8bf97;
+  --color-tang-400: #f4ab74;
+  --color-tang-500: #f0954f;
+  --color-tang-600: #d57c38;
+  --color-tang-950: #2a1a0d;
+
+  --shadow-lift: 0 12px 40px -12px rgb(0 0 0 / 0.55);
+  --shadow-pop: 0 24px 70px -18px rgb(0 0 0 / 0.7);
+}
+
+html { color-scheme: dark; }
+
+body {
+  background-color: var(--color-ink-950);
+  color: var(--color-ink-100);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.font-display { font-family: var(--font-display); }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+::selection { background: rgb(53 197 108 / 0.35); color: #f2f7f3; }
+
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--color-ink-700); border-radius: 8px; border: 2px solid var(--color-ink-900); }
+*::-webkit-scrollbar-thumb:hover { background: var(--color-ink-600); }
+
+/* layered ambient background: radial glows + engineering grid */
+.aura-bg {
+  background:
+    radial-gradient(1100px 600px at 85% -10%, rgb(53 197 108 / 0.07), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgb(83 198 222 / 0.055), transparent 55%),
+    radial-gradient(700px 500px at 55% 120%, rgb(242 179 61 / 0.035), transparent 60%);
+}
+.grid-overlay {
+  background-image:
+    linear-gradient(rgb(226 234 228 / 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(226 234 228 / 0.028) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 30%, transparent 100%);
+}
+.scanline {
+  background: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.012) 0 1px, transparent 1px 3px);
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(53 197 108 / 0.5); }
+  60% { box-shadow: 0 0 0 6px rgb(53 197 108 / 0); }
+}
+@keyframes pulseDotAmber {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(242 179 61 / 0.5); }
+  60% { box-shadow: 0 0 0 6px rgb(242 179 61 / 0); }
+}
+@keyframes scanSweep {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(320%); }
+}
+.pulse-dot { animation: pulseDot 1.8s ease-out infinite; }
+.pulse-dot-amber { animation: pulseDotAmber 1.4s ease-out infinite; }
+
+.receipt-paper {
+  background:
+    linear-gradient(rgb(11 15 13 / 0.02) 1px, transparent 1px) 0 0 / 100% 3px,
+    #f4f2ea;
+  color: #1c1f1d;
+}
+.receipt-zigzag {
+  -webkit-mask: conic-gradient(from -45deg at 50% 100%, #0000 90deg, #000 0) 50% 100% / 12px 6px repeat-x;
+  mask: conic-gradient(from -45deg at 50% 100%, #0000 90deg, #000 0) 50% 100% / 12px 6px repeat-x;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+.focus-ring:focus-visible { outline: 2px solid var(--color-leaf-500); outline-offset: 2px; }
