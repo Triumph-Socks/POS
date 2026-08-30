@@ -1,0 +1,2 @@
+# POS
+AuraPOS Grocery Edition
